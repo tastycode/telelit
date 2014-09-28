@@ -1,0 +1,10 @@
+To use:
+
+1. Sign up for a twilio account
+2. Get a twilio SMS number
+3. Deploy this to heroku or dokku
+4. Obtain an access token via [these instructions](http://blog.paulshi.me/technical/2013/11/27/Philips-Hue-Remote-API-Explained.html)
+5. configure your app with environment variables `HUE_ACCESS_TOKEN` and `LIGHT_ID`
+4. In the request url, put your web address with the path /sms
+5. Text a color to your sms number
+
