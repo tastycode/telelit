@@ -12,10 +12,10 @@ app.post('/sms', function(req, res) {
   var text = req.body.Body;
   var color = tinycolor(text);
   var hsl = color.toHsl();
-  console.log(text, hsl);
   var hueHue = parseInt((hsl.h / 360.0) * 65535);
   var hueSat = parseInt(hsl.s * 255);
   var hueBri = parseInt(hsl.l * 255.0);
+  var validCommand = false;
 
   var accessToken = process.env.HUE_ACCESS_TOKEN;
   var url = 'https://www.meethue.com/api/sendmessage?token=' + accessToken;
@@ -36,7 +36,17 @@ app.post('/sms', function(req, res) {
     }
   };
 
-  if (color.isValid()) {
+  if (/off/i.test(text)) {
+    clipMessage.clipCommand.body.on = false;
+    validCommand = true;
+  } else {
+    validCommand = color.isValid();
+  }
+
+  console.log("Received message: " + text, hsl, clipMessage);
+
+
+  if (validCommand) {
     res.end();
     request({
       url: url,
