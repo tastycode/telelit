@@ -19,8 +19,8 @@ app.post('/sms', function(req, res) {
 
   var accessToken = process.env.HUE_ACCESS_TOKEN;
   var url = 'https://www.meethue.com/api/sendmessage?token=' + accessToken;
-  var bridgeId = '001788fffe0aec34';
-  var lightId = 7;
+  var bridgeId = process.env.BRIDGE_ID;
+  var lightId = process.env.LIGHT_ID;
 
   var clipMessage = {
     bridgeId: bridgeId,
