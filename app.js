@@ -13,7 +13,7 @@ app.post('/sms', function(req, res) {
   var color = tinycolor(text);
   var hsl = color.toHsl();
   console.log(text, hsl);
-  var hueHue = (hsl.h / 360.0) * 65535;
+  var hueHue = parseInt((hsl.h / 360.0) * 65535);
   var hueSat = parseInt(hsl.s * 255);
   var hueBri = parseInt(hsl.l * 255.0);
 
